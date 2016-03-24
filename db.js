@@ -1,11 +1,10 @@
-var mongoose = require( 'mongoose' );
-var Schema   = mongoose.Schema;
+var MongoClient = require( 'mongodb' ).MongoClient;
 
-var Todo = new Schema({
-    user_id    : String,
-    content    : String,
-    updated_at : Date
-});
+var url = 'mongodb://localhost/express-todo';
 
-mongoose.model( 'Todo', Todo );
-mongoose.connect( 'mongodb://localhost/express-todo' );
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err;
+  global.db = db;
+  // var collection = db.collection('todos');
+
+})
